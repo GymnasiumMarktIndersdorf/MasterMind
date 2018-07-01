@@ -1,0 +1,29 @@
+public class Row
+{
+    Pin[] pins;
+    Pin[] correctPins;
+    
+    public Row()
+    {
+        pins = new Pin[4];
+        correctPins = new Pin[4];
+        for(int i = 0; i < 4; i++)
+        {
+            pins[i] = new Pin();
+            correctPins[i] = new Pin();
+        }
+    }
+    
+    public Row(int pos1 , int pos2 , int pos3 , int pos4)
+    {
+        pins = new Pin[4];
+        pins[0] = new Pin(pos1);
+        pins[1] = new Pin(pos2);
+        pins[2] = new Pin(pos3);
+        pins[3] = new Pin(pos4);
+        for(int i = 0; i < 4; i++)
+        {
+            correctPins[i] = new Pin();
+        }
+    }
+}
