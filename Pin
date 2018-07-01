@@ -1,0 +1,19 @@
+public class Pin
+{
+    private int color;
+    
+    public Pin(int newColor)
+    {
+        color = newColor;
+    }
+    
+    public Pin()
+    {
+        color = 12;
+    }
+    
+    public int giveColor()
+    {
+        return color;
+    }
+}
