@@ -1,0 +1,120 @@
+public class Game
+{
+    private Row[] rows;
+    private Row masterrow;
+    private static Game theInstance;
+    private int actualRow;
+    private int[] corrColor;
+    
+    protected Game()
+    {
+        rows = new Row[12];
+        for(int i = 0; i < 12; i++)
+        {
+            rows[i] = new Row();
+        }
+        masterrow = createRandomRow();
+        actualRow = 0;
+        corrColor = new int[4];
+    }
+    
+    public static Game getInstance()
+    {
+        if(theInstance == null)
+        {
+            theInstance = new Game();
+        }
+        return theInstance;
+    }
+    
+    public Row createRandomRow()
+    {
+        int pos1 = (int )(Math.random() * 8 + 1);
+        int pos2 = (int )(Math.random() * 8 + 1);
+        int pos3 = (int )(Math.random() * 8 + 1);
+        int pos4 = (int )(Math.random() * 8 + 1);
+        return new Row(pos1 , pos2 , pos3 , pos4);
+    }
+    
+    public void check()
+    {
+        int corrColor1 = masterrow.pins[0].giveColor();
+        int corrColor2 = masterrow.pins[1].giveColor();
+        int corrColor3 = masterrow.pins[2].giveColor();
+        int corrColor4 = masterrow.pins[3].giveColor();
+        int color1 = rows[actualRow].pins[0].giveColor();
+        int color2 = rows[actualRow].pins[1].giveColor();
+        int color3 = rows[actualRow].pins[2].giveColor();
+        int color4 = rows[actualRow].pins[3].giveColor();
+        boolean set1;
+        boolean set2;
+        boolean set3;
+        boolean set4;
+        if(color1 == corrColor1 || color1 == corrColor2 || color1 == corrColor3 || color1 == corrColor4)
+        {
+            rows[actualRow].correctPins[0] = new Pin(11);
+        }
+        if(color2 == corrColor1 || color2 == corrColor2 || color2 == corrColor3 || color2 == corrColor4)
+        {
+            rows[actualRow].correctPins[1] = new Pin(11);
+        }
+        if(color3 == corrColor1 || color3 == corrColor2 || color3 == corrColor3 || color3 == corrColor4)
+        {
+            rows[actualRow].correctPins[2] = new Pin(11);
+        }
+        if(color4 == corrColor1 || color4 == corrColor2 || color4 == corrColor3 || color4 == corrColor4)
+        {
+            rows[actualRow].correctPins[3] = new Pin(11);
+        }
+        if(color1 == corrColor1)
+        {
+            rows[actualRow].correctPins[0] = new Pin(10);
+        }
+        if(color2 == corrColor1)
+        {
+            rows[actualRow].correctPins[1] = new Pin(10);
+        }
+        if(color3 == corrColor1)
+        {
+            rows[actualRow].correctPins[2] = new Pin(10);
+        }
+        if(color4 == corrColor1)
+        {
+            rows[actualRow].correctPins[3] = new Pin(10);
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            corrColor[i] = rows[actualRow].correctPins[i].giveColor();
+        }
+        corrColor = sort();
+        actualRow = actualRow + 1;
+    }
+    
+    public int[] sort()
+    {
+        int q, k;
+        for (int i = corrColor.length - 1; i >= 1; i--) 
+        {
+            q = 0;
+            for (int j = 1; j <= i; j++) 
+            {
+                if (corrColor[j] > corrColor[q]) 
+                {
+                    q = j;
+                }
+            }
+            k = corrColor[q];
+            corrColor[q] = corrColor[i];
+            corrColor[i] = k;
+        }
+        return corrColor;
+    }
+    
+    public void pinSetzen(int color , int pos)
+    {
+        if(color <= 8 && pos <= 3)
+        {
+            rows[actualRow].pins[pos] = new Pin(color);
+        }
+    }
+}
