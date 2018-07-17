@@ -36,16 +36,16 @@ public final class Controller
     //Methoden, die bei Model aufgerufen werden//
     /////////////////////////////////////////////
     
-    public void pinSetzen(String farbe, int xPosition, int yPosition)
+    public void pinSetzen(int xPosition, int yPosition)
     {
         if(aktiveReihe != reiheFinden(yPosition))
         {
-            //was kommt hier rein?
+            //was kommt hier rein? //Nichts :)
         }
         else
         {
             int pin = pinFinden(xPosition);
-            model.pinSetzen(farbe, pin);
+            model.pinSetzen(aktiveFarbe, pin);
         }
     }
     
@@ -61,66 +61,68 @@ public final class Controller
             switch(i)
             {
                 case 0:
-                        if(yPosotion == 1) 
+                        if(yPosition == 1) 
                             {  reihe = 1; 
                             }
                         break; //Überprüfen ob im Rahmen von reihe eins, falls zutreffend reihe = 1 und break;
                 case 1:
-                        if(yPosotion == 2) 
+                        if(yPosition == 2) 
                             {  reihe = 2; 
                             }
                         break; //wiederholung von oben
                 case 2:
-                        if(yPosotion == 3) 
+                        if(yPosition == 3) 
                             {  reihe = 3; 
                             }
                         break; 
                 case 3:
-                        if(yPosotion == 4) 
+                        if(yPosition == 4) 
                             {  reihe = 4; 
                             }
                         break; 
                 case 4:
-                        if(yPosotion == 5) 
+                        if(yPosition == 5) 
                             {  reihe = 5; 
                             }
                         break; 
                 case 5:
-                        if(yPosotion == 6) 
+                        if(yPosition == 6) 
                             {  reihe = 6; 
                             }
                         break; 
                 case 6:
-                        if(yPosotion == 7) 
+                        if(yPosition == 7) 
                             {  reihe = 7; 
                             }
                         break; 
                 case 7:
-                        if(yPosotion == 8) 
+                        if(yPosition == 8) 
                             {  reihe = 8; 
                             }
                         break; 
                 case 8:
-                        if(yPosotion == 9) 
+                        if(yPosition == 9) 
                             {  reihe = 9; 
                             }
                         break; 
                 case 9:
-                        if(yPosotion == 10) 
+                        if(yPosition == 10) 
                             {  reihe = 10; 
                             }
                         break; 
                 case 10:
-                        if(yPosotion == 11) 
+                        if(yPosition == 11) 
                             {  reihe = 11; 
                             }
                         break; 
                 case 11:
-                        if(yPosotion == 12) 
+                        if(yPosition == 12) 
                             {  reihe = 12; 
                             }
                         break; 
-                default: //reihe = null
+                default: 
+                        reihe = -1;
+                        break;
             }
         }
         return reihe;
